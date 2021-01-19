@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gallery renders 1`] = `
+<Fragment>
+  <Thumbnail />
+  <Thumbnail />
+  <Thumbnail />
+</Fragment>
+`;
