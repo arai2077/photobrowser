@@ -1,11 +1,18 @@
-import React from 'react';
-import Gallery from './components/Gallery/Gallery.jsx';
-import { GalleryProvider } from './GalleryContext.js';
+import React from "react";
+import { observer } from "mobx-react-lite";
+import PhotoStore from "./stores/PhotoStore";
+import Thumbnail from "./components/Thumbnail";
 
-const App = () => (
-  <GalleryProvider>
-    <Gallery />
-  </GalleryProvider>
-)
+const App = observer(() => {
+  const photoStore = new PhotoStore();
+
+  return (
+    <>
+      {photoStore.photos.map(photo => (
+        <Thumbnail photo={photo} />
+      ))}
+    </>
+  );
+});
 
 export default App;
