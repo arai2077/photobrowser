@@ -1,12 +1,15 @@
-import { makeAutoObservable } from "mobx";
+import { runInAction, makeAutoObservable } from "mobx";
 import callForPhotos from "./callForPhotos/callForPhotos";
 
 class PhotoStore {
-	photos = callForPhotos();
+	dependencies = {}
 
-	constructor() {
-        makeAutoObservable(this);
-    }
+	constructor (jekke = callForPhotos) {
+		this.dependencies.callForPhotos = jekke;
+		makeAutoObservable(this);
+	}
+
+	photos = this.dependencies.callForPhotos();
 }
 
 export default PhotoStore;

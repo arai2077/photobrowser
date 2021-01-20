@@ -1,6 +1,6 @@
 const callForPhotos = async () => {
-	const url = `http://jsonplaceholder.typicode.com/photos`;
-	const response = await fetch(url);
+	console.log("calling photo api")
+	const response = await fetch("http://jsonplaceholder.typicode.com/photos");
 	return await response.json();
 };
 
