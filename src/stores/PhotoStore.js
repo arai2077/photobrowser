@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeObservable, observable, runInAction } from 'mobx';
 import callForPhotosImport from './callForPhotos/callForPhotos';
 
 export default class PhotoStore {
@@ -7,7 +7,11 @@ export default class PhotoStore {
 	apiError = false;
 
 	constructor() {
-		makeAutoObservable(this);
+		makeObservable(this, {
+			photos: observable,
+			isLoading: observable,
+			apiError: observable
+        })
 
 		this.fetchPhotos();
 	}
@@ -19,7 +23,7 @@ export default class PhotoStore {
 			const fetchedPhotos = await callForPhotosImport();
 
 			runInAction(() => {
-				this.photos = fetchedPhotos;
+				this.photos = fetchedPhotos.slice(0, 100);
 				this.isLoading = false;
 			});
 		} catch (error) {
