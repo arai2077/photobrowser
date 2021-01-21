@@ -13,9 +13,9 @@ export default class PhotoStore {
 	}
 
 	async fetchPhotos() {
-		this.isLoading = true;
-
 		try {
+			this.isLoading = true;
+
 			const fetchedPhotos = await callForPhotosImport();
 
 			runInAction(() => {
