@@ -1,5 +1,8 @@
+// TODO:
+// Figure out how to pass props here
+
 import React from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledPhotoContainer = styled.div`
