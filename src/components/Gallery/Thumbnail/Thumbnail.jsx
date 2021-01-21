@@ -5,7 +5,7 @@ const StyledThumbnail = styled.img`
 	margin: 3px;
 `
 
-const Thumbnail = ({ photo: { thumbnailUrl, title }}) => (
+const Thumbnail = ({ thumbnailUrl, title }) => (
 	<StyledThumbnail src={thumbnailUrl} alt={title} />
 );
 

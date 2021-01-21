@@ -9,7 +9,11 @@ const App = observer(() => {
   return (
     <>
       {photoStore.photos.map(photo => (
-        <Thumbnail key={photo.id} photo={photo} />
+		<Thumbnail
+			key={photo.id}
+			thumbnailUrl={photo.thumbnailUrl}
+			title={photo.title}
+		/>
       ))}
     </>
   );
