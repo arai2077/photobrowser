@@ -3,9 +3,9 @@ import { observer } from "mobx-react-lite";
 import PhotoStore from "./stores/PhotoStore";
 import Thumbnail from "./components/Thumbnail";
 
-const App = observer(() => {
-  const photoStore = new PhotoStore();
+const photoStore = new PhotoStore();
 
+const App = observer(() => {
   return (
     <>
       {photoStore.photos.map(photo => (
