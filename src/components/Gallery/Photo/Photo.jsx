@@ -1,23 +1,36 @@
-// TODO:
-// Figure out how to pass props here
-
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import styled from "styled-components";
+import PhotoStore from "../../../stores/PhotoStore";
 
 const StyledPhotoContainer = styled.div`
+	margin: 0 auto;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 `;
 
-const Photo = ({ url, title }) => (
-	<StyledPhotoContainer>
-		<img src={url} alt={title} />
-		<h1>{title}</h1>
-		<Link to="/">
-			<button>Close</button>
-		</Link>
-	</StyledPhotoContainer>
-);
+const photoStore = new PhotoStore();
+
+const Photo = observer(() => {
+	const { id } = useParams();
+	const [photo, setPhoto] = useState({});
+
+	useEffect(() => {
+		setPhoto(photoStore.getPhotoByID(id));
+	});
+
+	return (
+		<StyledPhotoContainer>
+			<img src={photo.url} alt={photo.title} />
+			<h1>{photo.title}</h1>
+			<Link to="/">
+				<button>Close</button>
+			</Link>
+		</StyledPhotoContainer>
+	);
+});
 
 export default Photo;
