@@ -32,4 +32,10 @@ export default class PhotoStore {
             })
         }
 	}
+
+	getPhotoByID(id) {
+		const arrayIdx = parseInt(id, 10) - 1;
+
+		return this.isLoading ? {} : this.photos[arrayIdx];
+	}
 }
