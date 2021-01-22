@@ -20,14 +20,14 @@ const Photo = observer(() => {
 
 	useEffect(() => {
 		setPhoto(photoStore.getPhotoByID(id));
-	});
+	}, [id]);
 
 	return (
 		<StyledPhotoContainer>
 			<img src={photo.url} alt={photo.title} />
 			<h1>{photo.title}</h1>
 			<Link to="/">
-				<button>Close</button>
+				<button>Back to gallery</button>
 			</Link>
 		</StyledPhotoContainer>
 	);
