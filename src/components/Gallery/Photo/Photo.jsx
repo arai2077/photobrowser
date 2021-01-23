@@ -4,23 +4,6 @@ import { observer } from "mobx-react-lite";
 import styled from "styled-components";
 import PhotoStore from "../../../stores/PhotoStore";
 
-const photoStore = new PhotoStore();
-
-const Photo = observer(() => {
-	const { id } = useParams();
-	const photo = photoStore.getPhotoByID(id);
-
-	return (
-		<StyledPhotoContainer>
-			<img src={photo.url} alt={photo.title} />
-			<h1>{photo.title}</h1>
-			<Link to="/">
-				<StyledButton>Back to gallery</StyledButton>
-			</Link>
-		</StyledPhotoContainer>
-	);
-});
-
 const StyledPhotoContainer = styled.div`
 	margin: 0 auto;
 	display: flex;
@@ -44,5 +27,22 @@ const StyledButton = styled.button`
   width: auto;
 	padding: 1em;
 `;
+
+const photoStore = new PhotoStore();
+
+const Photo = observer(() => {
+	const { id } = useParams();
+	const photo = photoStore.getPhotoByID(id);
+
+	return (
+		<StyledPhotoContainer>
+			<img src={photo.url} alt={photo.title} />
+			<h1>{photo.title}</h1>
+			<Link to="/">
+				<StyledButton>Back to gallery</StyledButton>
+			</Link>
+		</StyledPhotoContainer>
+	);
+});
 
 export default Photo;
