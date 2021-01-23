@@ -13,7 +13,7 @@ const StyledPhotoContainer = styled.div`
 `;
 
 const StyledButton = styled.button`
-	font-size: 1rem;
+	font-size: 1em;
   background-color: #282C34;
   color: white;
   border: 2px solid white;
@@ -23,7 +23,6 @@ const StyledButton = styled.button`
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-  height: 2.25em;
   width: auto;
 	padding: 1em;
 `;
@@ -37,7 +36,7 @@ const Photo = observer(() => {
 	return (
 		<StyledPhotoContainer>
 			<img src={photo.url} alt={photo.title} />
-			<h1>{photo.title}</h1>
+			<h2>{photo.title}</h2>
 			<Link to="/">
 				<StyledButton>Back to gallery</StyledButton>
 			</Link>
