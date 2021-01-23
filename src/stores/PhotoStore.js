@@ -1,41 +1,41 @@
-import { makeObservable, observable, runInAction } from 'mobx';
-import callForPhotosImport from './callForPhotos/callForPhotos';
+import { makeObservable, observable, runInAction } from "mobx";
+import callForPhotos from "./callForPhotos/callForPhotos";
 
 export default class PhotoStore {
-    photos = [];
-	isLoading = false;
+	photos = [];
+  isLoading = true;
 	apiError = false;
 
-	constructor() {
-		makeObservable(this, {
+  constructor() {
+    makeObservable(this, {
 			photos: observable,
-			isLoading: observable,
+      isLoading: observable,
 			apiError: observable
-        })
+    });
 
-		this.fetchPhotos();
-	}
+    this.fetchPhotos();
+  }
 
-	async fetchPhotos() {
-		try {
-			this.isLoading = true;
+  async fetchPhotos() {
+    try {
+      const fetchedPhotos = await callForPhotos();
 
-			const fetchedPhotos = await callForPhotosImport();
-
-			runInAction(() => {
+      runInAction(() => {
 				this.photos = fetchedPhotos.slice(0, 100);
+        this.isLoading = false;
+      });
+    } catch (error) {
+			runInAction(() => {
 				this.isLoading = false;
-			});
-		} catch (error) {
-            runInAction(() => {
-                this.apiError = true;
-            })
-        }
+        this.apiError = true;
+      });
+    }
 	}
 
 	getPhotoByID(id) {
-		const arrayIdx = parseInt(id, 10) - 1;
+		const parsedID = parseInt(id, 10);
+		const photo = this.photos.find(photo => photo.id === parsedID);
 
-		return this.isLoading ? {} : this.photos[arrayIdx];
+		return this.isLoading ? {} : photo;
 	}
 }
