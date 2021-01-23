@@ -1,5 +1,5 @@
 const callForPhotos = async () => {
-	const response = await fetch("http://jsonplaceholder.typicode.com/photos");
+	const response = await fetch("https://jsonplaceholder.typicode.com/photos");
 	return await response.json();
 };
 
