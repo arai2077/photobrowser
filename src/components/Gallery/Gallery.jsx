@@ -5,18 +5,14 @@ import styled from "styled-components";
 import PhotoStore from "../../stores/PhotoStore";
 import Thumbnail from "./Thumbnail/Thumbnail";
 
-const StyledGalleryContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-`;
-
 const photoStore = new PhotoStore();
 
 const App = observer(() => {
 	return (
 		<StyledGalleryContainer>
-			{photoStore.photos.map(photo => (
+			{photoStore.apiError
+			? <div>Something went wrong fetching the photos.</div>
+			: photoStore.photos.map(photo => (
 				<Link
 					key={photo.id}
 					to={`/${photo.id}`}
@@ -33,3 +29,9 @@ const App = observer(() => {
 });
 
 export default App;
+
+const StyledGalleryContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+`;
