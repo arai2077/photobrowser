@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# About app
+- Requires [yarn](https://classic.yarnpkg.com/en/docs/cli/install/) or [npm](https://www.npmjs.com/) 
+- To install: `yarn` or `npm i`
+- To run: `yarn start` or `npm start`
+- To run tests: `yarn test` or `npm test`
+- To build: `yarn build` or `npm build`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A live demo of the app can be found on [Heroku](https://photobrowser-arai.herokuapp.com/). However, as the app is running Heroku's free dynamo, it will go to sleep after a period of time. Give it a moment, it should wake up soon after.
 
-## Available Scripts
+### About implementation/architecture
+I chose to write the app in JavaScript rather than TypeScript. I did consider doing it in TypeScript, but I do not yet have enough experience to do it "right" and fully utilize its features. It's a process, though, and something I'm definitely interested in learning.
 
-In the project directory, you can run:
+The app uses [MobX](https://mobx.js.org/README.html) for state management. The domain store contains an array of JSON objects, a method for fetching data asynchronously, as well as a method for retrieving a single photo based on its ID. No UI stores were used as this application is simple enough without one. Instead, functional components and hooks are utilized.
 
-### `yarn start`
+The component structure is divided into a Gallery component and separate Thumbnail and Photo components as its children. The Gallery component observes the photos in the domain store and lists their thumbnails in the gallery view. The photo details view retrieves the photo's id from url parameters and calls the domain store's `getPhotoByID` method to retrieve the photo's details based on the id.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Basic browser routing is provided by [React Router](https://reactrouter.com/).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+CSS-in-JS is written using [Styled Components](https://styled-components.com/).
 
-### `yarn test`
+### About testing
+Testing is in its barebones, I agree. The tests that are currently implemented only test for differences in snapshots. Tests have been written with the help of [Jest](https://jestjs.io/) and [Enzyme](https://enzymejs.github.io/enzyme/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### About commenting and code readability
+I generally try to write code that is easily readable without the need for extra commenting. I try to use as clear and descriptive variable and as simple structure as possible. I'd be happy to further explain the code in the tech interview if necessary, should you decide to proceed to the next phase.
