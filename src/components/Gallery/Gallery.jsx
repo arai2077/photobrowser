@@ -18,15 +18,15 @@ const App = observer(() => {
 		<StyledGalleryContainer>
 			{photoStore.apiError
 			? <div>Something went wrong fetching the photos.</div>
-			: photoStore.photos.map(photo => (
+			: photoStore.photos.map(({id, thumbnailUrl, title}) => (
 				<Link
-					key={photo.id}
-					to={`/${photo.id}`}
+					key={id}
+					to={`/${id}`}
 				>
 					<Thumbnail
-						key={photo.id}
-						thumbnailUrl={photo.thumbnailUrl}
-						title={photo.title}
+						key={id}
+						thumbnailUrl={thumbnailUrl}
+						title={title}
 					/>
 				</Link>
 			))}
