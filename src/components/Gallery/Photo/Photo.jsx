@@ -14,16 +14,16 @@ const StyledPhotoContainer = styled.div`
 
 const StyledButton = styled.button`
 	font-size: 1em;
-  background-color: #282C34;
-  color: white;
-  border: 2px solid white;
-  border-radius: 5px;
-  outline: none;
+	background-color: #282C34;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	outline: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-  width: auto;
+	width: auto;
 	padding: 1em;
 `;
 

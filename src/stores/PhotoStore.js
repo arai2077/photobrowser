@@ -3,33 +3,33 @@ import callForPhotos from "./callForPhotos/callForPhotos";
 
 export default class PhotoStore {
 	photos = [];
-  isLoading = true;
+	isLoading = true;
 	apiError = false;
 
-  constructor() {
-    makeObservable(this, {
+	constructor() {
+		makeObservable(this, {
 			photos: observable,
-      isLoading: observable,
+			isLoading: observable,
 			apiError: observable
-    });
+		});
 
-    this.fetchPhotos();
-  }
+		this.fetchPhotos();
+	}
 
-  async fetchPhotos() {
-    try {
-      const fetchedPhotos = await callForPhotos();
+	async fetchPhotos() {
+		try {
+			const fetchedPhotos = await callForPhotos();
 
-      runInAction(() => {
+			runInAction(() => {
 				this.photos = fetchedPhotos.slice(0, 100);
-        this.isLoading = false;
-      });
-    } catch (error) {
+				this.isLoading = false;
+			});
+		} catch (error) {
 			runInAction(() => {
 				this.isLoading = false;
-        this.apiError = true;
-      });
-    }
+				this.apiError = true;
+			});
+		}
 	}
 
 	getPhotoByID(id) {
